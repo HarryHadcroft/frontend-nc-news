@@ -1,0 +1,26 @@
+.article-img{
+  height: 200px;
+  width: 200px;
+  margin-left: 50px;
+}
+
+nav{
+  display: flex;
+  padding: 20px 10px 20px 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-card{
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  flex-basis: 300px;
+}

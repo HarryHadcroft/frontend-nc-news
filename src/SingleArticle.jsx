@@ -6,14 +6,19 @@ export const SingleArticle = () => {
     const { article_id } = useParams()
     
     const [singleArticle, setSingleArticle] = useState({})
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         fetchArticleById(article_id).then((article) => {
             setSingleArticle(article)
+            setIsLoading(false)
         })
     }, [])
 
-    return(
+    
+    return isLoading ? (
+        <h1>Loading...</h1>
+        ) : (
         <section>
             <h2>{singleArticle.title}</h2>
             <img src={singleArticle.article_img_url} alt="" />

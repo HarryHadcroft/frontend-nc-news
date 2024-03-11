@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { fetchCommentsByArticleId } from "./api"
+import { CommentCard } from "./CommentCard"
 
 export const CommentList = ({ article_id }) => {
     const [comments, setComments] = useState([])
@@ -11,16 +12,6 @@ export const CommentList = ({ article_id }) => {
     }, [])
 
     return(
-        <section>
-            {comments.map((comment) => {
-                return(
-                    <div key={comment.comment_id}className="comment-card">
-                        <p>{comment.author}</p>
-                        <p>{comment.body}</p>
-                        <p>votes {comment.votes}</p>
-                    </div>
-                )
-            })}
-        </section>
+        <CommentCard comments={comments}/>
     )
 }

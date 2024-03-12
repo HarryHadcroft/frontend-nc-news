@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import { UserContext } from "./contexts/User";
+import { useContext } from "react";
 
 export const NavBar = () => {
+  const { loggedInUser } = useContext(UserContext)
   return (
     <header>
       <nav>
@@ -8,7 +11,7 @@ export const NavBar = () => {
             <Link to="/">NC News</Link></h1>
         <ul>
           <li>Topics</li>
-          <li>jessjelly</li>
+          <li>{loggedInUser.username}</li>
         </ul>
       </nav>
     </header>

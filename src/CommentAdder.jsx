@@ -28,7 +28,10 @@ export const CommentAdder = ({ singleArticle }) => {
   }
   if(isPosted){
     return(
-        <p>Comment posted!</p>
+        <div>
+            <p>Comment posted!</p>
+            <button onClick={() => setIsPosted(false)}>Post another comment</button>
+        </div>
     )
   }
   return (

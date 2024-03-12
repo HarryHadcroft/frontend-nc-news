@@ -16,12 +16,19 @@ export const SingleArticle = () => {
         })
     }, [])
 
-    const handleVote = (article_id, votes) => {
-        updateArticleVotes(article_id, votes).then((article) => {
-            setSingleArticle(article)
+    const handleVote = (article_id, votes, increase) => {
+        setSingleArticle((currSingleArticle) => {
+            if(increase){
+                return {...currSingleArticle, votes: singleArticle.votes + 1}
+            }else{
+                return {...currSingleArticle, votes: singleArticle.votes - 1}
+            }
+            
         })
+
+        updateArticleVotes(article_id, votes)
+        
     }
-    console.log(singleArticle)
     
     return isLoading ? (
         <h1>Loading...</h1>
@@ -32,8 +39,8 @@ export const SingleArticle = () => {
             <img src={singleArticle.article_img_url} alt="" />
             <div className="single-article-interaction-card">
                 <p>Votes {singleArticle.votes}</p>
-                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: 1})}}>Like</button>
-                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: -1})}}>Dislike</button>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: 1}, true)}}>Like</button>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: -1}, false)}}>Dislike</button>
             </div>
             <p>comments</p>
         </section>

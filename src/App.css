@@ -31,3 +31,11 @@ nav{
   border: 1px solid #ccc;
   flex-basis: 300px;
 }
+
+.single-article-interaction-card{
+  display: flex;
+}
+
+.single-article-interaction-card p{
+  margin: 5px 5px 5px 5px;
+}

@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 import { useParams } from "react-router";
-import { fetchArticleById } from "./api";
+import { fetchArticleById, updateArticleVotes } from "./api";
 import { CommentList } from "./CommentList";
 
 export const SingleArticle = () => {
@@ -16,6 +16,12 @@ export const SingleArticle = () => {
         })
     }, [])
 
+    const handleVote = (article_id, votes) => {
+        updateArticleVotes(article_id, votes).then((article) => {
+            setSingleArticle(article)
+        })
+    }
+    console.log(singleArticle)
     
     return isLoading ? (
         <h1>Loading...</h1>
@@ -24,8 +30,12 @@ export const SingleArticle = () => {
         <section>
             <h2>{singleArticle.title}</h2>
             <img src={singleArticle.article_img_url} alt="" />
-            <p>Votes {singleArticle.votes}</p>
-            <p>comments {singleArticle.comment_count}</p>
+            <div className="single-article-interaction-card">
+                <p>Votes {singleArticle.votes}</p>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: 1})}}>Like</button>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: -1})}}>Dislike</button>
+            </div>
+            <p>comments</p>
         </section>
         <CommentList article_id={singleArticle.article_id}/>
         </>

@@ -1,6 +1,6 @@
 import {useState, useEffect} from "react"
 import { useParams } from "react-router";
-import { fetchArticleById } from "./api";
+import { fetchArticleById, updateArticleVotes } from "./api";
 import { CommentList } from "./CommentList";
 
 export const SingleArticle = () => {
@@ -8,6 +8,7 @@ export const SingleArticle = () => {
     
     const [singleArticle, setSingleArticle] = useState({})
     const [isLoading, setIsLoading] = useState(true)
+    const [isError, setIsError] = useState(false)
 
     useEffect(() => {
         fetchArticleById(article_id).then((article) => {
@@ -16,6 +17,46 @@ export const SingleArticle = () => {
         })
     }, [])
 
+    const handleVote = (article_id, votes, increase) => {
+        setSingleArticle((currSingleArticle) => {
+            if(increase){
+                return {...currSingleArticle, votes: currSingleArticle.votes + 1}
+            }else{
+                return {...currSingleArticle, votes: currSingleArticle.votes - 1}
+            }
+            
+        })
+
+        updateArticleVotes(article_id, votes).catch((err) => {
+            setIsError(true)
+            setSingleArticle((currSingleArticle) => {
+                if(increase){
+                    return {...currSingleArticle, votes: currSingleArticle.votes - 1}
+                }else{
+                    return {...currSingleArticle, votes: currSingleArticle.votes + 1}
+                }
+            })
+        })
+        
+    }
+
+    if(isError){
+        return(
+            <>
+            <section>
+            <h2>{singleArticle.title}</h2>
+            <img src={singleArticle.article_img_url} alt="" />
+            <div className="single-article-interaction-card">
+                <p>Votes {singleArticle.votes}</p>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: 1}, true)}}>Like</button>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: -1}, false)}}>Dislike</button>
+            </div>
+            <p>comments</p>
+        </section>
+        <p>Vote failed!</p>
+        </>
+        )
+    }
     
     return isLoading ? (
         <h1>Loading...</h1>
@@ -24,8 +65,12 @@ export const SingleArticle = () => {
         <section>
             <h2>{singleArticle.title}</h2>
             <img src={singleArticle.article_img_url} alt="" />
-            <p>Votes {singleArticle.votes}</p>
-            <p>comments {singleArticle.comment_count}</p>
+            <div className="single-article-interaction-card">
+                <p>Votes {singleArticle.votes}</p>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: 1}, true)}}>Like</button>
+                <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: -1}, false)}}>Dislike</button>
+            </div>
+            <p>comments</p>
         </section>
         <CommentList article_id={singleArticle.article_id}/>
         </>

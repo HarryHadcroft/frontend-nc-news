@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { fetchCommentsByArticleId } from "./api"
 import { CommentCard } from "./CommentCard"
 
+
 export const CommentList = ({ article_id }) => {
     const [comments, setComments] = useState([])
 

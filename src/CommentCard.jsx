@@ -1,8 +1,16 @@
 import { useContext } from "react";
 import { UserContext } from "./contexts/User";
+import { deleteComment } from "./api";
 
 export const CommentCard = ({ comments }) => {
   const { loggedInUser } = useContext(UserContext);
+
+  const handleDelete = (comment_id) => {
+    deleteComment(comment_id).then(() => {
+      console.log("deleted comment")
+    })
+  }
+
   return (
     <section>
       {comments.map((comment) => {
@@ -14,7 +22,7 @@ export const CommentCard = ({ comments }) => {
             <p>{comment.body}</p>
             <p>votes {comment.votes}</p>
             {canDelete && (
-              <button onClick={() => handleDelete(comment.comment_id)}>
+              <button onClick={() => {handleDelete(comment.comment_id)}}>
                 Delete comment
               </button>
             )}

@@ -12,6 +12,6 @@ export const CommentList = ({ article_id }) => {
     }, [])
 
     return(
-        <CommentCard comments={comments}/>
+        <CommentCard comments={comments} setComments={setComments}/>
     )
 }

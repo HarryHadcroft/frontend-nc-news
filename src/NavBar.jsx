@@ -9,9 +9,9 @@ export const NavBar = () => {
       <nav>
         <h1>
             <Link to="/">NC News</Link></h1>
-        <ul>
-          <li>Topics</li>
-          <li>{loggedInUser.username}</li>
+        <ul className="nav-items">
+          <li className="nav-item">Topics</li>
+          <li className="nav-item">{loggedInUser.username}</li>
         </ul>
       </nav>
     </header>

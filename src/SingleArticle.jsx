@@ -80,7 +80,7 @@ export const SingleArticle = () => {
             <CommentAdder singleArticle={singleArticle} onUpdateComments={updateComments}/>
             <p>comments</p>
         </section>
-        <CommentList article_id={singleArticle.article_id} setComments={setComments} comments={comments}/>
+        <CommentList article_id={singleArticle.article_id} setComments={setComments} comments={comments} onUpdateComments={updateComments}/>
         </>
     )
 }

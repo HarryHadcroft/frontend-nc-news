@@ -3,7 +3,7 @@ import { fetchCommentsByArticleId } from "./api"
 import { CommentCard } from "./CommentCard"
 
 
-export const CommentList = ({ article_id, comments, setComments }) => {
+export const CommentList = ({ article_id, comments, setComments, onUpdateComments }) => {
 
     useEffect(() => {
         fetchCommentsByArticleId(article_id).then((comments) => {
@@ -12,6 +12,6 @@ export const CommentList = ({ article_id, comments, setComments }) => {
     }, [])
 
     return(
-        <CommentCard comments={comments}/>
+        <CommentCard comments={comments} onUpdateComments={onUpdateComments} article_id={article_id}/>
     )
 }

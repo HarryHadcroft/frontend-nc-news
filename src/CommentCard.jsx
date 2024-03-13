@@ -2,20 +2,26 @@ import { useContext, useState } from "react";
 import { UserContext } from "./contexts/User";
 import { deleteComment } from "./api";
 
-export const CommentCard = ({ comments }) => {
+export const CommentCard = ({ comments, onUpdateComments, article_id }) => {
   const { loggedInUser } = useContext(UserContext);
-  const [showConfirmation, setShowConfirmation] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [deletedCommentId, setDeletedCommentId] = useState(null);
 
   const handleDelete = (comment_id) => {
-    setIsDeleting(true)
-    deleteComment(comment_id).then(() => {
-      setShowConfirmation(true);
-      setTimeout(() => {
-        setShowConfirmation(false);
-        setIsDeleting(false)
-      }, 3000);
-    });
+    setIsDeleting(true);
+    setDeletedCommentId(comment_id)
+    deleteComment(comment_id)
+      .then(() => {;
+        setTimeout(() => {
+          setIsDeleting(false);
+          setDeletedCommentId(null)
+        }, 3000);
+        onUpdateComments(article_id);
+      })
+      .catch((err) => {
+        setIsError(true);
+      });
   };
 
   return (
@@ -38,7 +44,9 @@ export const CommentCard = ({ comments }) => {
                 Delete comment
               </button>
             )}
-            {showConfirmation && <p>Comment deleted</p>}
+            {isError && deletedCommentId === comment.comment_id && (
+              <p>Unable to delete comment</p>
+            )}
           </div>
         );
       })}

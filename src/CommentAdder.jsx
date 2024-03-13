@@ -2,11 +2,12 @@ import { useContext, useState } from "react";
 import { UserContext } from "./contexts/User";
 import { postComment } from "./api";
 
-export const CommentAdder = ({ singleArticle }) => {
+export const CommentAdder = ({ singleArticle, onUpdateComments }) => {
   const [commentText, setCommentText] = useState("");
   const { loggedInUser } = useContext(UserContext);
   const [isPosted, setIsPosted] = useState(false)
   const [isPosting, setIsPosting] = useState(false)
+  const [isError, setIsError] = useState(false)
 
   const handleSubmit = (event) => {
     setIsPosting(true)
@@ -18,22 +19,14 @@ export const CommentAdder = ({ singleArticle }) => {
     postComment(singleArticle.article_id, commentBody).then(() => {
         setIsPosting(false)
         setIsPosted(true)
+        setCommentText("")
+        onUpdateComments(singleArticle.article_id)
+    }).catch((err) => {
+      setIsError(true)
     })
   };
 
-  if(isPosting){
-    return(
-        <p>Posting comment...</p>
-    )
-  }
-  if(isPosted){
-    return(
-        <div>
-            <p>Comment posted!</p>
-            <button onClick={() => setIsPosted(false)}>Post another comment</button>
-        </div>
-    )
-  }
+
   return (
     <section>
       <form onSubmit={handleSubmit}>
@@ -46,6 +39,9 @@ export const CommentAdder = ({ singleArticle }) => {
           onChange={(event) => setCommentText(event.target.value)}
         />
         <button>Post Comment</button>
+        {isError && (
+          <p>Unable to post comment</p>
+        )}
       </form>
     </section>
   );

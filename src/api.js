@@ -39,3 +39,9 @@ export const deleteComment = (comment_id) => {
         return response.data
     })
 }
+
+export const fetchTopics = () => {
+    return newsApi.get("/topics").then((response) => {
+        return response.data.topics
+    })
+}

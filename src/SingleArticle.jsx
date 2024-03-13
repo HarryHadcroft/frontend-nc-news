@@ -1,14 +1,14 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { fetchArticleById, updateArticleVotes } from "./api";
+import { fetchArticleById, fetchCommentsByArticleId, updateArticleVotes } from "./api";
 import { CommentList } from "./CommentList";
-import { Link } from "react-router-dom";
 import { CommentAdder } from "./CommentAdder";
 
 export const SingleArticle = () => {
     const { article_id } = useParams()
     
     const [singleArticle, setSingleArticle] = useState({})
+    const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
 
@@ -39,9 +39,14 @@ export const SingleArticle = () => {
                 }
             })
         })
-        
     }
 
+    const updateComments = () => {
+        fetchCommentsByArticleId(article_id).then((comments) => {
+            setComments(comments)
+        })
+    }
+        
     if(isError){
         return(
             <>
@@ -72,10 +77,10 @@ export const SingleArticle = () => {
                 <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: 1}, true)}}>Like</button>
                 <button className="vote-button" onClick={() => {handleVote(singleArticle.article_id, {inc_votes: -1}, false)}}>Dislike</button>
             </div>
-            <CommentAdder singleArticle={singleArticle}/>
+            <CommentAdder singleArticle={singleArticle} onUpdateComments={updateComments}/>
             <p>comments</p>
         </section>
-        <CommentList article_id={singleArticle.article_id}/>
+        <CommentList article_id={singleArticle.article_id} setComments={setComments} comments={comments}/>
         </>
     )
 }

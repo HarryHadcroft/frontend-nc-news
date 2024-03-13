@@ -29,7 +29,7 @@ export const updateArticleVotes = (article_id, votes) => {
 }
 
 export const postComment = (article_id, commentBody) => {
-    return newsApi.post(`/articles/${article_id}/commentss`, commentBody).then((response) => {
+    return newsApi.post(`/articles/${article_id}/comments`, commentBody).then((response) => {
         return response.data
     })
 }

@@ -101,3 +101,26 @@ nav{
   position: relative;
   margin-left: 47px;
 }
+
+.sorting-button{
+  position: relative;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.order-by-box{
+  position: relative;
+}
+
+.order-by-options{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  padding: 10px;
+  background-color: white;
+}
+
+.sorting-section{
+  display: flex;
+}

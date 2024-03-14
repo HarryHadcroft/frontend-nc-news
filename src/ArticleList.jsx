@@ -8,15 +8,32 @@ import { Link, useSearchParams } from "react-router-dom";
 export const ArticleList = () => {
   const { topic } = useParams();
   const [articles, setArticles] = useState([]);
-  const [isOpen, setIsOpen] = useState(false);
+  const [sortByIsOpen, setSortByIsOpen] = useState(false);
+  const [orderByIsOpen, setOrderByIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams()
-  const sortBy = searchParams.get("sort_by")
-  const order = searchParams.get("order")
+  const [searchParams, setSearchParams] = useSearchParams();
+  let sortBy = searchParams.get("sort_by");
+  const order = searchParams.get("order");
 
-  const toggleDropDown = () => {
-    setIsOpen(!isOpen);
+  if(!sortBy){
+    sortBy = "created_at"
+  }
+
+  const toggleSortByDropDown = () => {
+    setSortByIsOpen(!sortByIsOpen);
   };
+
+  const toggleOrderByDropDown = () => {
+    setOrderByIsOpen(!orderByIsOpen);
+  };
+
+  const closeSortBy = () => {
+    setSortByIsOpen(false)
+  }
+
+  const closeOrderBy = () => {
+    setOrderByIsOpen(false)
+  }
 
   useEffect(() => {
     fetchArticles(topic, sortBy, order).then((articles) => {
@@ -30,15 +47,19 @@ export const ArticleList = () => {
   }
   return (
     <>
+    <section className="sorting-section">
       <div className="sort-by-box">
-        <button onClick={toggleDropDown}>sort by</button>
-        {isOpen && (
+        <button onClick={toggleSortByDropDown} className="sorting-button">
+          sort by
+        </button>
+        {sortByIsOpen && (
           <div className="sort-by-options">
             <ul>
               <Link
                 to={{
                   search: "?sort_by=created_at",
                 }}
+                onClick={closeSortBy}
               >
                 <li>Date</li>
               </Link>
@@ -46,6 +67,7 @@ export const ArticleList = () => {
                 to={{
                   search: "?sort_by=votes",
                 }}
+                onClick={closeSortBy}
               >
                 <li>Votes</li>
               </Link>
@@ -53,6 +75,7 @@ export const ArticleList = () => {
                 to={{
                   search: "?sort_by=comment_count",
                 }}
+                onClick={closeSortBy}
               >
                 <li>Comments</li>
               </Link>
@@ -60,6 +83,35 @@ export const ArticleList = () => {
           </div>
         )}
       </div>
+      <div className="order-by-box">
+        <button onClick={toggleOrderByDropDown} className="sorting-button">
+          order by
+        </button>
+        {orderByIsOpen && (
+          <div className="order-by-options">
+            <ul>
+              <Link
+                to={{
+                  search: `?sort_by=${sortBy}&order=DESC`,
+                }}
+                onClick={closeOrderBy}
+              >
+                <li>Descending</li>
+              </Link>
+              <Link
+                to={{
+                  search: `?sort_by=${sortBy}&order=ASC`,
+                }}
+                onClick={closeOrderBy}
+              >
+                <li>Ascending</li>
+              </Link>
+            </ul>
+          </div>
+        )}
+      </div>
+      </section>
+
       <ArticleCard articles={articles} />
     </>
   );

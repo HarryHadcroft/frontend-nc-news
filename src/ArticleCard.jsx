@@ -7,7 +7,7 @@ export const ArticleCard = ({ articles }) => {
         return (
           <div key={article.article_id} className="article-card">
             <Link to={`/articles/${article.article_id}`}>
-              <p>{article.title}</p>
+              <p className="article-card-title">{article.title}</p>
               <img
                 src={article.article_img_url}
                 alt=""

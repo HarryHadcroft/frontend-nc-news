@@ -1,27 +1,32 @@
-import './App.css'
-import { Home } from './Home'
-import { NavBar } from './NavBar'
-import {Routes, Route} from "react-router-dom"
-import { SingleArticle } from './SingleArticle'
-import { CommentAdder } from './CommentAdder'
-import { UserContext } from './contexts/User'
-import { useState } from 'react'
+import "./App.css";
+import { ArticleList } from "./ArticleList";
+import { NavBar } from "./NavBar";
+import { Routes, Route } from "react-router-dom";
+import { SingleArticle } from "./SingleArticle";
+import { UserContext } from "./contexts/User";
+import { useState } from "react";
+import { SideBar } from "./SideBar";
 
 function App() {
-
   const [loggedInUser, setLoggedInUser] = useState({
-    username: "jessjelly"
-  })
+    username: "jessjelly",
+  });
 
   return (
-    <UserContext.Provider value={{loggedInUser, setLoggedInUser}}>
+    <UserContext.Provider value={{ loggedInUser, setLoggedInUser }}>
       <NavBar />
-      <Routes>
-        <Route path="/" element={<Home />}/>
-        <Route path="/articles/:article_id" element={<SingleArticle />} />
-      </Routes>
+      <div className="app-container">
+        <SideBar />
+        <div className="main-content">
+          <Routes>
+            <Route path="/" element={<ArticleList />} />
+            <Route path="/articles/:article_id" element={<SingleArticle />} />
+            <Route path="/:topic" element={<ArticleList />} />
+          </Routes>
+        </div>
+      </div>
     </UserContext.Provider>
-  )
+  );
 }
 
-export default App
+export default App;

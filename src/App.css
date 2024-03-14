@@ -11,6 +11,11 @@ nav{
   justify-content: space-between;
 }
 
+.nav-title{
+  text-decoration: none;
+  color: black;
+}
+
 .nav-items{
   display: flex;
   list-style-type: none;
@@ -36,8 +41,12 @@ nav{
   flex-basis: 300px;
 }
 
+.article-card-title{
+  height: 50px;
+}
+
 .comment-card{
-  margin: 10px;
+  margin: 10px 10px 10px 30px;
   padding: 20px;
   border: 1px solid #ccc;
   flex-basis: 300px;
@@ -49,4 +58,32 @@ nav{
 
 .single-article-interaction-card p{
   margin: 5px 5px 5px 5px;
+}
+
+.app-container {
+  display: flex;
+}
+
+.side-bar {
+  width: 200px;
+  border-right: solid gainsboro 1px;
+}
+
+.main-content {
+  flex-grow: 1; 
+}
+
+.single-article-section{
+  margin-left: 30px;
+}
+
+.topic-text{
+  text-decoration: none;
+}
+
+.topic-text p{
+  margin: 2px 10px 2px auto;
+  border-bottom: solid;
+  border-color: gainsboro;
+  color: black;
 }

@@ -69,7 +69,7 @@ export const SingleArticle = () => {
         <h1>Loading...</h1>
         ) : (
             <>
-        <section>
+        <section className="single-article-section">
             <h2>{singleArticle.title}</h2>
             <img src={singleArticle.article_img_url} alt="" />
             <div className="single-article-interaction-card">

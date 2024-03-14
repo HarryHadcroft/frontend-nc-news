@@ -8,7 +8,8 @@ This was built using the API created in the project: https://github.com/HarryHad
 `node.js version 21.5.0` was used for this project. Earlier versions may not be compatible with this project
 
 ## Running this project
-First you will need to clone this respository by using `git clone https://github.com/HarryHadcroft/frontend-nc-news.git` in your terminal
+First you will need to clone this respository by using 
+`git clone https://github.com/HarryHadcroft/frontend-nc-news.git` in your terminal
 
 Next you will need to run `npm install` to install all the required dependencies
 

@@ -87,3 +87,17 @@ nav{
   border-color: gainsboro;
   color: black;
 }
+
+.sort-by-options{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  padding: 10px;
+  background-color: white;
+}
+
+.sort-by-box{
+  position: relative;
+  margin-left: 47px;
+}

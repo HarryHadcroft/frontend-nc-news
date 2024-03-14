@@ -4,6 +4,7 @@ import { ArticleCard } from "./ArticleCard";
 import "./App.css";
 import { useParams } from "react-router";
 import { Link, useSearchParams } from "react-router-dom";
+import { ErrorPage } from "./ErrorPage";
 
 export const ArticleList = () => {
   const { topic } = useParams();
@@ -11,6 +12,7 @@ export const ArticleList = () => {
   const [sortByIsOpen, setSortByIsOpen] = useState(false);
   const [orderByIsOpen, setOrderByIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isErr, setIsErr] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams();
   let sortBy = searchParams.get("sort_by");
   const order = searchParams.get("order");
@@ -20,10 +22,12 @@ export const ArticleList = () => {
   }
 
   const toggleSortByDropDown = () => {
+    setOrderByIsOpen(false)
     setSortByIsOpen(!sortByIsOpen);
   };
 
   const toggleOrderByDropDown = () => {
+    setSortByIsOpen(false)
     setOrderByIsOpen(!orderByIsOpen);
   };
 
@@ -37,13 +41,24 @@ export const ArticleList = () => {
 
   useEffect(() => {
     fetchArticles(topic, sortBy, order).then((articles) => {
+      setIsErr(false)
       setArticles(articles);
       setIsLoading(false);
-    });
-  }, [topic, sortBy, order]);
+    }).catch((err) => {
+      console.log(err, "<<<<<")
+      setIsLoading(false)
+      setIsErr(true)
+    })
+  }, [topic, sortBy, order, isErr]);
 
   if (isLoading) {
     return <p>Loading page...</p>;
+  }
+
+  if(isErr){
+    return(
+      <ErrorPage message={`${topic} is not a valid topic!`} />
+    )
   }
   return (
     <>

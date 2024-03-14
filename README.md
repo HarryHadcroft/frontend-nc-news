@@ -1,8 +1,17 @@
-# React + Vite
+# Northcoders News Web Application
+The intention of this project was to build the front-end of Northcoders News, a social news website and forum where content is curated and promoted by user-voting. 
+Northcoders News showcases a diverse array of articles, offering filtering by topic and sorting options based on publication date, vote count, and comment quantity. Users can also add comments to the article they are viewing and like or dislike the article
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Here is a link to the deployed version: https://teal-faloodeh-14806d.netlify.app/
 
-Currently, two official plugins are available:
+This was built using the API created in the project: https://github.com/HarryHadcroft/nc-news
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+`node.js version 21.5.0` was used for this project. Earlier versions may not be compatible with this project
+
+## Running this project
+First you will need to clone this respository by using 
+`git clone https://github.com/HarryHadcroft/frontend-nc-news.git` in your terminal
+
+Next you will need to run `npm install` to install all the required dependencies
+
+Finally, to open the application locally, you will need to run `npm run dev` hover over the `http://localhost:5173/` link in the terminal, hold ctrl and click

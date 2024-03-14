@@ -45,7 +45,6 @@ export const ArticleList = () => {
       setArticles(articles);
       setIsLoading(false);
     }).catch((err) => {
-      console.log(err, "<<<<<")
       setIsLoading(false)
       setIsErr(true)
     })

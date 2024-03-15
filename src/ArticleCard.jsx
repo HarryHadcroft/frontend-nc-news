@@ -15,8 +15,8 @@ export const ArticleCard = ({ articles }) => {
               />
             </Link>
             <div className="article-card-comments-votes">
-                <p>{article.votes} <i class="bi bi-arrow-up-circle"></i></p>
-                <p>{article.comment_count} <i class="bi bi-chat-left"></i> </p>
+                <p>{article.votes} <i className="bi bi-arrow-up-circle"></i></p>
+                <p>{article.comment_count} <i className="bi bi-chat-left"></i> </p>
             </div>
           </div>
         );

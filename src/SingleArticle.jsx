@@ -16,7 +16,7 @@ export const SingleArticle = () => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isVoteError, setIsVoteError] = useState(false);
-  const [isArticleError, setIsArticleError] = useState(false)
+  const [isArticleError, setIsArticleError] = useState(false);
 
   useEffect(() => {
     fetchArticleById(article_id)
@@ -25,8 +25,8 @@ export const SingleArticle = () => {
         setIsLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false)
-        setIsArticleError(true)
+        setIsLoading(false);
+        setIsArticleError(true);
       });
   }, []);
 
@@ -57,51 +57,50 @@ export const SingleArticle = () => {
     });
   };
 
-
-  if(isArticleError){
-    return(
-        <ErrorPage message={"This article does not exist!"} />
-    )
+  if (isArticleError) {
+    return <ErrorPage message={"This article does not exist!"} />;
   }
   return isLoading ? (
     <h1>Loading...</h1>
   ) : (
     <>
       <section className="single-article-section">
-        <h2>{singleArticle.title}</h2>
-        <img src={singleArticle.article_img_url} alt="" />
-        <div className="single-article-interaction-card">
-          <p>Votes {singleArticle.votes}</p>
-          <button
-            className="vote-button"
-            onClick={() => {
-              handleVote(singleArticle.article_id, { inc_votes: 1 }, true);
-            }}
-          >
-            Like
-          </button>
-          <button
-            className="vote-button"
-            onClick={() => {
-              handleVote(singleArticle.article_id, { inc_votes: -1 }, false);
-            }}
-          >
-            Dislike
-          </button>
+        <div className="single-article-division">
+          <h2>{singleArticle.title}</h2>
+          <img src={singleArticle.article_img_url} alt="" />
         </div>
+          <div className="single-article-interaction-card">
+            <button
+              className="vote-button"
+              onClick={() => {
+                handleVote(singleArticle.article_id, { inc_votes: 1 }, true);
+              }}
+            >
+              <i className="bi bi-hand-thumbs-up"></i>
+            </button>
+            <p>{singleArticle.votes}</p>
+            <button
+              className="vote-button"
+              onClick={() => {
+                handleVote(singleArticle.article_id, { inc_votes: -1 }, false);
+              }}
+            >
+              <i className="bi bi-hand-thumbs-down"></i>
+            </button>
+          </div>
         {isVoteError && <p>Vote failed!</p>}
         <CommentAdder
           singleArticle={singleArticle}
           onUpdateComments={updateComments}
         />
-        <p>comments</p>
-      </section>
+        <p className="comment-header">comments</p>
       <CommentList
         article_id={singleArticle.article_id}
         setComments={setComments}
         comments={comments}
         onUpdateComments={updateComments}
       />
+      </section>
     </>
   );
 };

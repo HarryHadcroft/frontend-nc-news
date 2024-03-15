@@ -64,16 +64,17 @@ export const ArticleList = () => {
     <section className="sorting-section">
       <div className="sort-by-box">
         <button onClick={toggleSortByDropDown} className="sorting-button">
-          sort by
+          sort by <i class="bi bi-caret-down"></i>
         </button>
         {sortByIsOpen && (
           <div className="sort-by-options">
-            <ul>
+            <ul className="options-list">
               <Link
                 to={{
                   search: "?sort_by=created_at",
                 }}
                 onClick={closeSortBy}
+                className="options-link"
               >
                 <li>Date</li>
               </Link>
@@ -82,6 +83,7 @@ export const ArticleList = () => {
                   search: "?sort_by=votes",
                 }}
                 onClick={closeSortBy}
+                className="options-link"
               >
                 <li>Votes</li>
               </Link>
@@ -90,6 +92,7 @@ export const ArticleList = () => {
                   search: "?sort_by=comment_count",
                 }}
                 onClick={closeSortBy}
+                className="options-link"
               >
                 <li>Comments</li>
               </Link>
@@ -99,16 +102,17 @@ export const ArticleList = () => {
       </div>
       <div className="order-by-box">
         <button onClick={toggleOrderByDropDown} className="sorting-button">
-          order by
+          order by <i class="bi bi-caret-down"></i>
         </button>
         {orderByIsOpen && (
           <div className="order-by-options">
-            <ul>
+            <ul className="options-list">
               <Link
                 to={{
                   search: `?sort_by=${sortBy}&order=DESC`,
                 }}
                 onClick={closeOrderBy}
+                className="options-link"
               >
                 <li>Descending</li>
               </Link>
@@ -117,6 +121,7 @@ export const ArticleList = () => {
                   search: `?sort_by=${sortBy}&order=ASC`,
                 }}
                 onClick={closeOrderBy}
+                className="options-link"
               >
                 <li>Ascending</li>
               </Link>

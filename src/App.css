@@ -2,7 +2,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-
+  
 }
 
 nav{
@@ -36,11 +36,16 @@ nav{
   align-items: center;
 }
 
+.article-card:hover{
+  background-color: #ececec;
+}
+
 .article-card{
   margin: 10px;
   padding: 20px;
   border: 1px solid #ccc;
   flex-basis: 300px;
+  border-radius: 10px;
 }
 
 .article-img{
@@ -74,30 +79,44 @@ nav{
 }
 
 .comment-card{
-  margin: 10px 10px 10px 30px;
-  padding: 20px;
+  margin: 10px 10% 10px 10%;
+  padding: 10px;
   border: 1px solid #ccc;
   flex-basis: 300px;
+  border-radius: 10px;
 }
+
+.single-article-division{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.single-article-division img{
+  width: 80%;
+  border-radius: 20px;
+}
+
 
 .single-article-interaction-card{
   display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0 0 10%;
 }
 
 .single-article-interaction-card p{
   margin: 5px 5px 5px 5px;
 }
 
-.single-article-section{
-  justify-content: center;
-}
+
 
 .app-container {
   display: flex;
 }
 
 .side-bar {
-  width: 200px;
+  width: 150px;
   border-right: solid gainsboro 1px;
 }
 
@@ -115,7 +134,6 @@ nav{
 
 .topic-text p{
   margin: 2px 10px 2px auto;
-  border-bottom: solid;
   border-color: gainsboro;
   color: black;
 }
@@ -127,6 +145,22 @@ nav{
   z-index: 10;
   padding: 10px;
   background-color: white;
+  text-decoration: none;
+}
+
+.options-list{
+  list-style-type: none;
+  text-decoration: none;
+}
+
+.options-link{
+  text-decoration: none;
+  color: black;
+}
+
+.options-link li:hover{
+  background-color: #007cb9;
+  color: white;
 }
 
 .sort-by-box{
@@ -155,4 +189,33 @@ nav{
 
 .sorting-section{
   display: flex;
+  margin-top: 5px;
+  justify-content: end;
+  margin-right: 5%;
+}
+
+.comment-adder-form{
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.comment-adder-form button{
+  background-color: #007cb9;
+  color: white;
+  border-radius: 5px;
+  border-style: unset;
+}
+
+.comment-adder-box p{
+  margin-left: 10%;
+}
+
+.comment-header{
+  margin-left: 10%;
+}
+
+.comment-author{
+  font-size: 14px;
 }

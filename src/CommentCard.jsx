@@ -31,9 +31,9 @@ export const CommentCard = ({ comments, onUpdateComments, article_id }) => {
 
         return (
           <div key={comment.comment_id} className="comment-card">
-            <p>{comment.author}</p>
+            <p className="comment-author">{comment.author}</p>
             <p>{comment.body}</p>
-            <p>votes {comment.votes}</p>
+            <p><i class="bi bi-hand-thumbs-up"></i> {comment.votes}</p>
             {canDelete && (
               <button
                 onClick={() => {

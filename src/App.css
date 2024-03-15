@@ -1,14 +1,16 @@
-.article-img{
-  height: 200px;
-  width: 200px;
-  margin-left: 50px;
+
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 
 nav{
   display: flex;
-  padding: 20px 10px 20px 10px;
+  padding: 20px 10px 10px 10px;
   align-items: center;
   justify-content: space-between;
+  border-bottom: solid #ccc 1px;
 }
 
 .nav-title{
@@ -27,7 +29,7 @@ nav{
   font-size: 1.2rem;
 }
 
-.section-container {
+.article-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -41,8 +43,34 @@ nav{
   flex-basis: 300px;
 }
 
+.article-img{
+  height: 200px;
+  width: 300px;
+  border-radius: 10px;
+}
+
 .article-card-title{
   height: 50px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.article-card-link{
+  text-decoration: none;
+}
+
+.article-card-comments-votes{
+  display: flex;
+}
+
+.article-card-comments-votes p{
+  padding: 5px;
+  margin: 5px 5px 5px 0;
+  border: solid 1px;
+  border-radius: 10px;
+  background-color: #ececec;
+  border-style: unset;
+  font-size: 12px;
 }
 
 .comment-card{
@@ -58,6 +86,10 @@ nav{
 
 .single-article-interaction-card p{
   margin: 5px 5px 5px 5px;
+}
+
+.single-article-section{
+  justify-content: center;
 }
 
 .app-container {

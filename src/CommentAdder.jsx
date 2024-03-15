@@ -28,8 +28,8 @@ export const CommentAdder = ({ singleArticle, onUpdateComments }) => {
 
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
+    <section className="comment-adder-section">
+      <form onSubmit={handleSubmit} className="comment-adder-form">
         <p>comment as {loggedInUser.username}</p>
         <textarea
           type="text"
